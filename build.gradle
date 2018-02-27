@@ -1,18 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
-
-
 
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -26,9 +22,33 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.google.code.gson:gson:+'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
+repositories {
+    mavenCentral()
+}
+
+//ext {
+//    bintrayRepo = 'maven'
+//    bintrayName = 'k-fishhttp'
+//
+//    publishedGroupId = 'cc.fish.kfishhttp'
+//    libraryName = 'circleloadinglibrary'
+//    artifact = 'circleloadinglibrary'
+//
+//    libraryDescription = 'a circle loading for android'
+//
+//    siteUrl = 'https://github.com/zhangke3016/CircleLoading'
+//    gitUrl = 'https://github.com/zhangke3016/CircleLoading.git'
+//
+//    libraryVersion = '1.1.0'
+//
+//    developerId = 'mrzk'
+//    developerName = 'zhangke'
+//    developerEmail = '609975727@qq.com'
+//
+//    licenseName = 'The Apache Software License, Version 2.0'
+//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//    allLicenses = ["Apache-2.0"]
+//}
