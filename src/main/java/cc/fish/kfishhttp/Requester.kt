@@ -3,19 +3,12 @@ package cc.fish.kfishhttp
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.os.Parcel
-import android.os.Parcelable
 import cc.fish.kfishhttp.extensions.ThreadPool
 import cc.fish.kfishhttp.net.NetCore
 import cc.fish.kfishhttp.net.NetUtils
-import com.google.gson.reflect.TypeToken
-import java.io.IOException
 import java.io.InputStream
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 import java.net.URLEncoder
 import java.security.*
-import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
 import javax.net.ssl.KeyManagerFactory
@@ -25,17 +18,13 @@ import javax.net.ssl.TrustManagerFactory
 /**
  * Created by fish on 18-2-27.
  */
-class Requester<Result>() {
+class Requester<Result> {
     var mUrl = StringBuilder()
     var mBody = StringBuilder()
     var mHeader = mutableMapOf<String, String>()
     var mIsJsonBody = false
     var mSSLContext: SSLContext? = null
     var mType: Class<Result>? = null
-
-    constructor(parcel: Parcel) : this() {
-        mIsJsonBody = parcel.readByte() != 0.toByte()
-    }
 
     fun url(url: String) = mUrl.run {
         delete(0, length)

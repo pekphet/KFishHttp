@@ -52,7 +52,7 @@ class NetCore<Result> {
         try {
             val data = IS2Str(inputStream)
             h.post {
-                val s = Gson().fromJson<Result>(data, type)
+                val s = if (type == null) null else Gson().fromJson<Result>(data, type)
                 s.success()
             }
         } catch (ex: IOException) {

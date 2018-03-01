@@ -1,0 +1,78 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+//FOR J-CENTER
+def siteUrl = 'https://github.com/pekphet/KFishHttp'
+def gitUrl = 'https://github.com/pekphet/KFishHttp.git'
+group = "cc.fish.kfishhttp"
+
+version = "0.11-beta"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name 'KFishHttp'
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'Apache License, Version 2.0'
+                        url 'https://opensource.org/licenses/apache2.0.php'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'pekphet'
+                        name 'SmartRabbit'
+                        email 'pekphet@126.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+artifacts {
+//    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")    //读取 local.properties 文件里面的 bintray.user
+    key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "KFishHttp"
+//        publishVersion = "0.1-beta"//发布到JCenter上的项目版本号
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+repositories {
+    mavenCentral()
+}

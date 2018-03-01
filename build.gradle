@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+apply from: 'bintray.gradle'
+
+
 android {
     compileSdkVersion 26
 
@@ -24,31 +27,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.code.gson:gson:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
-repositories {
-    mavenCentral()
-}
-
-//ext {
-//    bintrayRepo = 'maven'
-//    bintrayName = 'k-fishhttp'
-//
-//    publishedGroupId = 'cc.fish.kfishhttp'
-//    libraryName = 'circleloadinglibrary'
-//    artifact = 'circleloadinglibrary'
-//
-//    libraryDescription = 'a circle loading for android'
-//
-//    siteUrl = 'https://github.com/zhangke3016/CircleLoading'
-//    gitUrl = 'https://github.com/zhangke3016/CircleLoading.git'
-//
-//    libraryVersion = '1.1.0'
-//
-//    developerId = 'mrzk'
-//    developerName = 'zhangke'
-//    developerEmail = '609975727@qq.com'
-//
-//    licenseName = 'The Apache Software License, Version 2.0'
-//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//    allLicenses = ["Apache-2.0"]
-//}
