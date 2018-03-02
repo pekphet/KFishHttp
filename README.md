@@ -29,7 +29,7 @@ s -> {
   return null;
 });
 ```  
-*In Java<=7
+* In Java<=7
 ```
 Requester<T> req = new Requester<>();
 req.setMType(T.class);
